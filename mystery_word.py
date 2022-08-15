@@ -5,24 +5,15 @@ def play_game():
     filepath = open("test-word.txt", "r")
     open_file = filepath.read()
     print(open_file)
-
     words = open_file.split()
-    counter = 8
-
     random_word = random.choice(words)
     print(random_word)
-
     blank = [" __ "] * len(random_word)
-
     print(blank)
-
     random_word_picked = random_word
-
     letters = list(random_word_picked)
     print(letters)
-
-    # guess = input("pick a letter:")
-
+    counter = 8
     user_letters(blank, letters, counter)
 
 
