@@ -4,41 +4,46 @@ import random
 def play_game():
     filepath = open("test-word.txt", "r")
     open_file = filepath.read()
-    print(open_file)
+    print("Welcome to myster_word")
     words = open_file.split()
     random_word = random.choice(words)
-    print(random_word)
-    blank = [" __ "] * len(random_word)
+    blank = [" _ "] * len(random_word)
     print(blank)
     random_word_picked = random_word
     letters = list(random_word_picked)
-    print(letters)
     counter = 8
-    user_letters(blank, letters, counter)
+    letters_guessed = []
+    user_letters(blank, letters, counter, letters_guessed)
 
 
-def user_letters(blank, letters, counter):
+def user_letters(blank, letters, counter, letters_guessed):
     while counter > 0:
         print("You have", counter, "guesses left")
+        print("You have guessed", letters_guessed)
 
         guess = input("pick a letter:")
-        if guess in letters:
+        if len(guess) > 1:
+            print("Only one letter at a time please")
+        elif guess in letters:
             for i in range(len(letters)):
                 if guess == letters[i]:
                     blank[i] = letters[i]
+                    letters_guessed.append(guess)
             print(blank)
-            if " __ " not in blank:
-                print("You Win!")
+            if " _ " not in blank:
+                print("You Win! The word was", "".join(letters))
                 exit()
             if counter > 0:
-                user_letters(blank, letters, counter)
+                user_letters(blank, letters, counter, letters_guessed)
 
         else:
             counter -= 1
             if counter > 0:
-                user_letters(blank, letters, counter)
+                letters_guessed.append(guess)
+                print(blank)
+                user_letters(blank, letters, counter, letters_guessed)
             else:
-                print("Game Over The correct word was", "".join(letters))
+                print("Game Over. The correct word was", "".join(letters))
                 exit()
 
 
