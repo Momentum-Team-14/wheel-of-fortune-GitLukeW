@@ -2,7 +2,7 @@ import random
 
 
 def play_game():
-    filepath = open("test-word.txt", "r")
+    filepath = open("words.txt", "r")
     open_file = filepath.read()
     print("Welcome to myster_word")
     words = open_file.split()
@@ -29,7 +29,7 @@ def user_letters(blank, letters, counter, letters_guessed):
                 if guess == letters[i]:
                     blank[i] = letters[i]
                     letters_guessed.append(guess)
-            print(blank)
+            print("".join(blank).upper())
             if " _ " not in blank:
                 print("You Win! The word was", "".join(letters))
                 exit()
@@ -40,7 +40,7 @@ def user_letters(blank, letters, counter, letters_guessed):
             counter -= 1
             if counter > 0:
                 letters_guessed.append(guess)
-                print(blank)
+                print("".join(blank).upper())
                 user_letters(blank, letters, counter, letters_guessed)
             else:
                 print("Game Over. The correct word was", "".join(letters))
