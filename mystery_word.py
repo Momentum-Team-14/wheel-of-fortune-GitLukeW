@@ -18,25 +18,28 @@ def play_game():
 
 
 def user_letters(blank, letters, counter):
-    guess = input("pick a letter:")
-    if guess in letters:
-        for i in range(len(letters)):
-            if guess == letters[i]:
-                blank[i] = letters[i]
-        print(blank)
-        if " __ " not in blank:
-            print("You Win!")
-            exit()
-        if counter > 0:
-            user_letters(blank, letters, counter)
+    while counter > 0:
+        print("You have", counter, "guesses left")
 
-    else:
-        counter -= 1
-        if counter > 0:
-            user_letters(blank, letters, counter)
+        guess = input("pick a letter:")
+        if guess in letters:
+            for i in range(len(letters)):
+                if guess == letters[i]:
+                    blank[i] = letters[i]
+            print(blank)
+            if " __ " not in blank:
+                print("You Win!")
+                exit()
+            if counter > 0:
+                user_letters(blank, letters, counter)
+
         else:
-            print("Game Over")
-            exit()
+            counter -= 1
+            if counter > 0:
+                user_letters(blank, letters, counter)
+            else:
+                print("Game Over")
+                exit()
 
 
 # def guess_counter():
