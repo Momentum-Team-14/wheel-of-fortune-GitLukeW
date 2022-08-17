@@ -38,7 +38,7 @@ def user_letters(blank, letters, counter):
             if counter > 0:
                 user_letters(blank, letters, counter)
             else:
-                print("Game Over")
+                print("Game Over The correct word was", "".join(letters))
                 exit()
 
 
